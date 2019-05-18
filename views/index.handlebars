@@ -17,11 +17,16 @@
         </form>
         <h3>Examples:</h3>
         <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
+          {{#each deals}}
+          <h1>New Deal</h1>
+          <p>offered: {{this.offered}}</p>
+          <p>offeredQTY: {{this.offeredQTY}}</p>
+          <p>asked: {{this.asked}}</p>
+          <p>askedQTY: {{this.askedQTY}}</p>
+          <p>status: {{this.status}}</p>
+          <p>userID: {{this.userID}}</p>
+          <p>created: {{this.created}}</p>
+          <p>updated: {{this.updated}}</p>
           {{/each}}
         </ul>
       </div>
