@@ -1,10 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "zachary",
     "database": "veggieExchange",
     "host": "localhost",
-    "port": 8889,
     "dialect": "mysql"
   },
   "test": {
