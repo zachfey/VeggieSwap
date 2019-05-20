@@ -16,19 +16,30 @@
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
         <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
+        <div id="example-list" class="list-group">
           {{#each deals}}
-          <h1>New Deal</h1>
-          <p>offered: {{this.offered}}</p>
-          <p>offeredQTY: {{this.offeredQTY}}</p>
-          <p>asked: {{this.asked}}</p>
-          <p>askedQTY: {{this.askedQTY}}</p>
-          <p>status: {{this.status}}</p>
-          <p>UserId: {{this.UserId}}</p>
-          <p>createdAt: {{this.createdAt}}</p>
-          <p>updatedAt: {{this.updatedAt}}</p>
+            <div class="offerBox">
+              <div class="row offerrer">
+                <div class="offerImage">
+                  
+                </div>
+                <h1>this.UserId</h1>
+              </div> 
+              <div class="row"> 
+                <p>offered: {{this.offered}}</p>
+                <p>offeredQTY: {{this.offeredQTY}}</p>
+              </div>
+              <div class="row">
+                <p>asked: {{this.asked}}</p>
+                <p>askedQTY: {{this.askedQTY}}</p>
+              </div>
+            </div>
+          {{!-- <p>status: {{this.status}}</p>
+          <p>userID: {{this.UserId}}</p>
+          <p>created: {{this.createdAt}}</p>
+          <p>updated: {{this.updatedAt}}</p> --}}
           {{/each}}
-        </ul>
+        </div>
       </div>
     </div>
   </div>

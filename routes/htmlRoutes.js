@@ -26,9 +26,11 @@ module.exports = function (app) {
   }
 
   app.get("/", function (req, res) {
+
     db.Deal.findAll({}).then(function (results) {
       // console.log(results)
-      res.render("index", { deals: results })
+      res.render("index2", { deals: results })
+
     });
   });
 
