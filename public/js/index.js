@@ -1,19 +1,19 @@
 // Get references to page elements
 var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
+var $submitBtn = $(".submitOffer");
 var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveExample: function (example) {
+  saveDeal: function (deal) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/deals",
-      data: JSON.stringify(example)
+      data: JSON.stringify(deal)
     });
   },
   getExamples: function () {
@@ -64,35 +64,22 @@ var refreshExamples = function () {
 var handleFormSubmit = function (event) {
   event.preventDefault();
 
-  // Create a new examplee
-  // TODO: un-hard code this object
-  var newObj = {
-    UserId: 1,
-    offered: 'Cherries',
-    offeredQTY: 50,
-    asked: 'Oranges',
-    askedQTY: 5,
-    status: 'pending'
-  };
+  console.log('submitted')
+    var newObj = {
+      UserId: 1,
+      offered: 'Cherries',
+      offeredQTY: 50,
+      asked: 'Oranges',
+      askedQTY: 5,
+      status: 'pending'
+    };
 
-  // To create new user:
-  // var newObj = {
-  //   username: "zachary",
-  //   password: 'password',
-  //   email: 'email'
-  // }
-
-  // if (!(example.text && example.description)) {
-  //   alert("You must enter an example text and description!");
-  //   return;
-  // }
+    API.saveDeal(newObj).then(function () {
+      refreshExamples();
+    });
 
 
 
-
-  API.saveExample(newObj).then(function () {
-    refreshExamples();
-  });
 
   $exampleText.val("");
   $exampleDescription.val("");
