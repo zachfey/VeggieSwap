@@ -159,10 +159,11 @@
                                 Wanting: {{this.askedQTY}} {{this.asked}}
                             </div>
                         </div>
+                        <button class = "deleteDeal" data-dealid = {{this.id}}>Delete</button>
                     </div>
                 {{/each}}
             </div>
-            <button class = "deleteDeal" data-dealid = {{this.id}}>Delete</button>
+            
         </div>
 
         <!-- Grid -->
@@ -222,14 +223,14 @@
         <form action="/action_page.php" target="_blank">
             <div id="makeOffer">
                 <label>Offering: </label>
-                <input class="offerInput" style="width:30%;" type="text" name="offering"
+                <input class="offerInput" style="width:30%;" type="text" name="offering" id='offered'
                     required>
             
             
                 <label>Offer Quantity: </label>
-                <input class="offerInput" style="width:10%;" type="number" name="offerQty"
+                <input class="offerInput" style="width:10%;" type="number" name="offerQty" id='offeredQTY'
                     required>
-                <select name="offerUnitType" size="1">
+                <select name="offerUnitType" size="1" id='offeredUnits'>
                     <option value="lbs">lbs.</option>
                     <option value="oz">oz.</option>
                     <option value="dozen">dozen</option>
@@ -239,12 +240,12 @@
             <div class="and">AND</div>
             <div id="makeWant">
                 <label>Wanting</label>
-                <input class="offerInput" style="width:30%;" type="text" name="wanting" required>
+                <input class="offerInput" style="width:30%;" type="text" name="wanting" id ='asked' required>
             
             
                 <label>Quantity wanted</label>
-                <input class="offerInput" style="width:10%;" type="number" name="wantQty" required>
-                <select name="offerUnitType" size="1">
+                <input class="offerInput" style="width:10%;" type="number" name="wantQty" id ='askedQTY' required>
+                <select name="offerUnitType" size="1" id = 'askedUnits'>
                     <option value="lbs">lbs.</option>
                     <option value="oz">oz.</option>
                     <option value="dozen">dozen</option>
