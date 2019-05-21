@@ -9,8 +9,6 @@ module.exports = function (app) {
     });
   });
 
-
-  // complete
   // ensure following format:
   // var newObj = {
   //   UserId: 1,
@@ -27,7 +25,6 @@ module.exports = function (app) {
     });
   });
 
-  // complete
   // ensure following format:
   // var newObj = {
   //   username: "zachary",
@@ -41,11 +38,11 @@ module.exports = function (app) {
     });
   });
 
-    //incomplete
+  //incomplete
   // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.json(dbExample);
+  app.delete("/api/delete/:id", function (req, res) {
+    db.Deal.destroy({ where: { id: req.params.id } }).then(function (response) {
+      res.json(response);
     });
-  });
-};
+  })
+}

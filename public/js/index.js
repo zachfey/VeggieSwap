@@ -1,8 +1,9 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+// var $exampleText = $("#example-text");
+// var $exampleDescription = $("#example-description");
 var $submitBtn = $(".submitOffer");
-var $exampleList = $("#example-list");
+var $delteBtn = $(".deleteDeal");
+// var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -16,47 +17,31 @@ var API = {
       data: JSON.stringify(deal)
     });
   },
-  getExamples: function () {
+
+  // getExamples: function () {
+  //   return $.ajax({
+  //     url: "api/examples",
+  //     type: "GET"
+  //   });
+  // },
+
+  deleteDeal: function (id) {
     return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function (id) {
-    return $.ajax({
-      url: "api/examples/" + id,
+      url: "api/delete/" + id,
       type: "DELETE"
     });
   }
+
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function () {
-  API.getExamples().then(function (data) {
-    var $examples = data.map(function (example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
+// empties input form
+var refreshInputs = function () {
+  $('#offered').val('');
+  $('#offeredQTY').val('');
+  $('#offeredUnits').val('');
+  $('#asked').val('');
+  $('#askedQTY').val('');
+  $('#askedUnits').val('');
 };
 
 // handleFormSubmit is called whenever we submit a new example
@@ -65,38 +50,51 @@ var handleFormSubmit = function (event) {
   event.preventDefault();
 
   console.log('submitted')
-    var newObj = {
-      UserId: 1,
-      offered: 'Cherries',
-      offeredQTY: 50,
-      asked: 'Oranges',
-      askedQTY: 5,
-      status: 'pending'
-    };
+  //TODO replace userID with the users' ID
+  var newObj = {
+    UserId: 1,
+    offered: $('#offered').val(),
+    offeredQTY: $('#offeredQTY').val(),
+    asked: $('#asked').val(),
+    askedQTY: $('#askedQTY').val(),
+    status: 'open'
+  };
 
-    API.saveDeal(newObj).then(function () {
-      refreshExamples();
-    });
-
-
-
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function () {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function () {
-    refreshExamples();
+  API.saveDeal(newObj).then(function () {
+    console.log('deal saved!');
+    refreshInputs();
+    //TODO add modal to let user know the deal was saved
   });
 };
 
+
+
+var deleteOffer = function (event) {
+  event.preventDefault();
+  console.log('deleting...');
+
+  // Get the ID from the button.
+  // This is shorthand for $(this).attr("data-planid")
+  var id = $(this).data("dealid");
+
+  API.deleteDeal(id).then(()=>{
+    console.log('deal deleted!');
+  })
+}
+
+// handleDeleteBtnClick is called when an example's delete button is clicked
+// Remove the example from the db and refresh the list
+// var handleDeleteBtnClick = function () {
+//   var idToDelete = $(this)
+//     .parent()
+//     .attr("data-id");
+
+//   API.deleteExample(idToDelete).then(function () {
+//     refreshInput();
+//   });
+// };
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$delteBtn.on("click", deleteOffer)
+// $exampleList.on("click", ".delete", handleDeleteBtnClick);
