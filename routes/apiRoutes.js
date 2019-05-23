@@ -49,13 +49,13 @@ module.exports = function (app) {
   app.put("/api/deals", function (req, res) {
     console.log("id: " + req.body.id)
     db.Deal.update({
-      status: 'closed'
+      status: req.body.status
     }, {
       where: {
         id: req.body.id
       }
     }).then(function(response) {
-      console.log(response);
+      res.json(response);
     })
   })
 }

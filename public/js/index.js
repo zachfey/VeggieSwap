@@ -3,7 +3,8 @@
 // var $exampleDescription = $("#example-description");
 var $submitBtn = $(".submitOffer");
 var $delteBtn = $(".deleteDeal");
-var $completeBtn = $(".completeDeal")
+var $acceptBtn = $('.acceptDeal');
+var $completeBtn = $(".completeDeal");
 // var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
@@ -19,11 +20,14 @@ var API = {
     });
   },
 
-  updateDeal: function (id) {
+  updateDeal: function (id, status) {
     return $.ajax({
       url: "api/deals",
       type: "PUT",
-      data: {id: id}
+      data: {
+        id: id,
+        status: status
+      }
     });
   },
 
@@ -66,7 +70,10 @@ var handleFormSubmit = function (event) {
     console.log('deal saved!');
     refreshInputs();
     //TODO add modal to let user know the deal was saved
+
+
   });
+  location.reload()
 };
 
 var deleteOffer = function (event) {
@@ -77,35 +84,39 @@ var deleteOffer = function (event) {
   // This is shorthand for $(this).attr("data-planid")
   var id = $(this).data("dealid");
 
-  API.deleteDeal(id).then(()=>{
+  API.deleteDeal(id).then(() => {
     console.log('deal deleted!');
+    location.reload()
   })
+
 }
 
-var completeOffer = function (event) {
+var acceptOffer = function () {
   console.log('updating...');
 
   var id = $(this).data("dealid");
 
-  API.updateDeal(id).then(() => {
+  API.updateDeal(id, 'pending').then(() => {
     console.log('deal updated!');
+    location.reload()
   })
+
 }
 
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-// var handleDeleteBtnClick = function () {
-//   var idToDelete = $(this)
-//     .parent()
-//     .attr("data-id");
+var completeOffer = function () {
+  console.log('updating...');
 
-//   API.deleteExample(idToDelete).then(function () {
-//     refreshInput();
-//   });
-// };
+  var id = $(this).data("dealid");
 
+  API.updateDeal(id, 'closed').then(() => {
+    console.log('deal updated!');
+    location.reload()
+  })
+
+}
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $delteBtn.on("click", deleteOffer);
+$acceptBtn.on("click", acceptOffer);
 $completeBtn.on("click", completeOffer);
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);
