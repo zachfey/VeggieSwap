@@ -61,8 +61,10 @@ var handleFormSubmit = function (event) {
     UserId: 1,
     offered: $('#offered').val(),
     offeredQTY: $('#offeredQTY').val(),
+    offeredUnits: $('#offeredUnits').val(),
     asked: $('#asked').val(),
     askedQTY: $('#askedQTY').val(),
+    askedUnits: $('#askedUnits').val(),
     status: 'open'
   };
 
