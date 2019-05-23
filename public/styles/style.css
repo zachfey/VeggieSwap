@@ -1,4 +1,4 @@
-html{
+/* html{
     background-image: url("../assets/img/backgrd.jpg") !important;
     background-size: 100%;
 
@@ -12,17 +12,17 @@ html{
     /* font-size: 1000px;
 } */
 
-
+/* 
 .w3-padding-24 {
     overflow: hidden;
-}
+} */
 
-.logo-container {
+/* .logo-container {
     background-image: url(../assets/img/veggieswap.png);
       width: 300px; 
     height: 88px;
      position: relative;
-     align-self: auto;
+     align-self: auto; */ 
      /* padding: 200px; */
     /* position: absolute;
     border: 50px; */
@@ -32,5 +32,5 @@ html{
 background-image: url(../assets/img/veggielogo4.jpg);
 height: 100px;
 width:100px;
-align-content: center !important; */
-}
+align-content: center !important;
+ } 

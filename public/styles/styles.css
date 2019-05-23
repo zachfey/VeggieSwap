@@ -77,6 +77,7 @@ input:valid {
 .and {
   text-align:center;
   padding: 10px;
+  text-emphasis-color: black;
 }
 
 .offerButton {
@@ -97,4 +98,67 @@ input:valid {
 
 .submitOffer {
   text-align: center;
+}
+
+/* johdi css */
+.background{
+  background-image: url("/images/backgrd.jpg") !important;
+  background-size: 100%;
+
+};
+
+#home{
+  font-size: 1000px !important;
+}
+
+/* #test{
+  /* font-size: 1000px;
+} */
+
+
+.w3-padding-24 {
+  overflow: hidden;
+}
+
+.logo-container {
+  background-image: url("/images/veggieswap.png");
+    width: 300px; 
+  height: 176px;
+   position: absolute;
+   align-self: auto;
+   background-repeat: no-repeat;
+   top: 15%;
+   left: 10%;
+   /* padding: 200px; */
+  /* position: absolute;
+  border: 50px; */
+  /* border-left: 50%; */
+/* left: 30px; */
+/* text-align: center !important;
+background-image: url(../assets/img/veggielogo4.jpg);
+height: 100px;
+width:100px;
+align-content: center !important; */
+}
+
+
+h5{
+  text-shadow: 1px 1px black;
+}
+
+#borderimage{
+  border: 40px solid;
+  padding: 15px;
+  border-image: url("/images/borderimg.jpg") 70 round;
+  background: rgb(196, 178, 178);
+}
+
+#makeOffer{
+  border-color: black;
+  background: white;
+}
+
+#makeWant{
+  border-color: black;
+  background: white;
 }
