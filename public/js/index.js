@@ -3,6 +3,7 @@
 // var $exampleDescription = $("#example-description");
 var $submitBtn = $(".submitOffer");
 var $delteBtn = $(".deleteDeal");
+var $completeBtn = $(".completeDeal")
 // var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
@@ -18,12 +19,13 @@ var API = {
     });
   },
 
-  // getExamples: function () {
-  //   return $.ajax({
-  //     url: "api/examples",
-  //     type: "GET"
-  //   });
-  // },
+  updateDeal: function (id) {
+    return $.ajax({
+      url: "api/deals",
+      type: "PUT",
+      data: {id: id}
+    });
+  },
 
   deleteDeal: function (id) {
     return $.ajax({
@@ -67,8 +69,6 @@ var handleFormSubmit = function (event) {
   });
 };
 
-
-
 var deleteOffer = function (event) {
   event.preventDefault();
   console.log('deleting...');
@@ -79,6 +79,16 @@ var deleteOffer = function (event) {
 
   API.deleteDeal(id).then(()=>{
     console.log('deal deleted!');
+  })
+}
+
+var completeOffer = function (event) {
+  console.log('updating...');
+
+  var id = $(this).data("dealid");
+
+  API.updateDeal(id).then(() => {
+    console.log('deal updated!');
   })
 }
 
@@ -96,5 +106,6 @@ var deleteOffer = function (event) {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$delteBtn.on("click", deleteOffer)
+$delteBtn.on("click", deleteOffer);
+$completeBtn.on("click", completeOffer);
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);

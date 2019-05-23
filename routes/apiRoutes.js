@@ -38,11 +38,24 @@ module.exports = function (app) {
     });
   });
 
-  //incomplete
+  // complete
   // Delete an example by id
   app.delete("/api/delete/:id", function (req, res) {
     db.Deal.destroy({ where: { id: req.params.id } }).then(function (response) {
       res.json(response);
     });
+  })
+
+  app.put("/api/deals", function (req, res) {
+    console.log("id: " + req.body.id)
+    db.Deal.update({
+      status: 'closed'
+    }, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(response) {
+      console.log(response);
+    })
   })
 }
