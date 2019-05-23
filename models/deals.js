@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  
+
   var Deal = sequelize.define("Deal", {
     offered: {
       type: DataTypes.STRING,
@@ -12,6 +12,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    askedUnits: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     asked: {
       type: DataTypes.STRING,
       allowNull: false
@@ -20,13 +24,17 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    askedUnits: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     status: {
       type: DataTypes.ENUM('open', 'pending', 'closed'),
       allowNull: false
     },
   });
 
-  Deal.associate = function(models){
+  Deal.associate = function (models) {
     Deal.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
