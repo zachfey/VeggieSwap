@@ -1,11 +1,8 @@
-// Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
 var $submitBtn = $(".submitOffer");
 var $delteBtn = $(".deleteDeal");
 var $acceptBtn = $('.acceptDeal');
 var $completeBtn = $(".completeDeal");
-// var $exampleList = $("#example-list");
+var $uploadImg = $('#uploadImage');
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -37,7 +34,6 @@ var API = {
       type: "DELETE"
     });
   }
-
 };
 
 // empties input form
@@ -116,9 +112,20 @@ var completeOffer = function () {
   })
 
 }
+
+// var handleUpload = function (event){
+//   event.preventDefault()
+//   console.log('uploading...');
+
+//   API.uploadImage().then(() => {
+//     console.log('image uploaded!');
+//   })
+// }
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $delteBtn.on("click", deleteOffer);
 $acceptBtn.on("click", acceptOffer);
 $completeBtn.on("click", completeOffer);
+// $uploadImg.on("click", handleUpload)
 // $exampleList.on("click", ".delete", handleDeleteBtnClick);

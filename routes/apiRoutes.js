@@ -1,23 +1,15 @@
 var db = require("../models");
+var fs = require("fs");
+var path = require("path");
 
 module.exports = function (app) {
-  //complete
-  // Get all examples 
+ 
   app.get("/api/deals", function (req, res) {
     db.Post.findAll({}).then(function (results) {
       res.json(results);
     });
   });
 
-  // ensure following format:
-  // var newObj = {
-  //   UserId: 1,
-  //   offered: 'Potato',
-  //   offeredQTY: 5,
-  //   asked: 'Tomato',
-  //   askedQTY: 1,
-  //   status: 'open'
-  // };
   app.post("/api/deals", function (req, res) {
     console.log(req.body);
     db.Deal.create(req.body).then(function (response) {
@@ -25,12 +17,7 @@ module.exports = function (app) {
     });
   });
 
-  // ensure following format:
-  // var newObj = {
-  //   username: "zachary",
-  //   password: 'password',
-  //   email: 'email'
-  // }
+
   app.post("/api/users", function (req, res) {
     console.log(req.body);
     db.User.create(req.body).then(function (response) {
@@ -38,7 +25,41 @@ module.exports = function (app) {
     });
   });
 
-  // complete
+  //upload user image
+  //TODO save file path in database for user image url
+  app.post('/api/upload',
+    db.upload.single("file" /* name attribute of <file> element in form */),
+    (req, res) => {
+      let tempPath = req.file.path;
+      let targetPath = path.join(__dirname, "../public/images/image.png");
+  
+      if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpg") {
+        fs.rename(tempPath, targetPath, err => {
+          if (err) {console.log(err)};
+  
+          res
+            .status(200)
+            .contentType("text/plain")
+            .end("File uploaded!");
+        });
+      } else {
+        fs.unlink(tempPath, err => {
+          if (err) return handleError(err, res);
+  
+          res
+            .status(403)
+            .contentType("text/plain")
+            .end("Only .png or .jpg files are allowed!");
+        });
+      }
+    }
+  );
+
+  //serve image
+  app.get("/api/image.png", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/images/image.png"));
+  });
+
   // Delete an example by id
   app.delete("/api/delete/:id", function (req, res) {
     db.Deal.destroy({ where: { id: req.params.id } }).then(function (response) {
