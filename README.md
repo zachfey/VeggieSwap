@@ -1,6 +1,6 @@
 # Veggie Swap
 
-![veggieswaplogo](/images/veggieswap.png)
+![veggieswaplogo](/public/images/veggieswap.png)
 
 Veggie Swap is an app that allows gardeners and veggie lovers to trade fresh produce with others in their area, no matter the variety. Users can see current transactions, what is available to trade, as well as select the quantity. Once the transaction is complete, they can arrange how they would like to communicate with other gardeners to proceed with the trade. 
 
