@@ -9,8 +9,11 @@ Users must create a username and password, then log in if they don't have an exi
 To Use:
 
 Run npm install
-Create database 
+
+Create database
+
 select node server.js
+
 localhost:3000
 
 
