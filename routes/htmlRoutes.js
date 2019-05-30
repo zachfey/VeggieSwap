@@ -4,7 +4,7 @@ module.exports = function (app) {
 
   app.get("/", function (req, res) {
 
-    db.Deal.findAll({}).then(function (results) {
+    db.Deal.findAll({include: [db.User]}).then(function (results) {
       console.log(results)
 
       let openDeals = [];
@@ -22,8 +22,8 @@ module.exports = function (app) {
       }
 
       deals = { openDeals: openDeals, pendingDeals: pendingDeals, closedDeals: closedDeals }
-
-      res.render("index", deals)
+      console.log(deals)
+      res.render("home", deals)
 
     });
   });
