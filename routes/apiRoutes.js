@@ -5,7 +5,7 @@ var path = require("path");
 module.exports = function (app) {
  
   app.get("/api/deals", function (req, res) {
-    db.Post.findAll({}).then(function (results) {
+    db.Post.findAll({include: [veggieexchange.users]}).then(function (results) {
       res.json(results);
     });
   });
@@ -13,7 +13,8 @@ module.exports = function (app) {
   app.post("/api/deals", function (req, res) {
     console.log(req.body);
     db.Deal.create(req.body).then(function (response) {
-      res.json(response);
+      // res.json(response);
+      res.redirect('/');
     });
   });
 
@@ -21,7 +22,8 @@ module.exports = function (app) {
   app.post("/api/users", function (req, res) {
     console.log(req.body);
     db.User.create(req.body).then(function (response) {
-      res.json(response);
+      // res.json(response);
+      res.redirect('/');
     });
   });
 
@@ -31,7 +33,8 @@ module.exports = function (app) {
     db.upload.single("file" /* name attribute of <file> element in form */),
     (req, res) => {
       let tempPath = req.file.path;
-      let targetPath = path.join(__dirname, "../public/images/image.png");
+      const username = 'zachary' //TODO replace this with the user
+      let targetPath = path.join(__dirname, "../public/images/" + username + '.png');
   
       if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpg") {
         fs.rename(tempPath, targetPath, err => {
@@ -56,8 +59,14 @@ module.exports = function (app) {
   );
 
   //serve image
-  app.get("/api/image.png", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/images/image.png"));
+  app.get("/api/:image", (req, res) => {
+    fs.stat(path.join(__dirname, "../public/images/" + req.params.image), function(err, stat) { 
+      if (err == null) { 
+        res.sendFile(path.join(__dirname, "../public/images/" + req.params.image));
+      } else  {
+        res.sendFile(path.join(__dirname, "../public/images/default.png"));
+      }
+    }); 
   });
 
   // Delete an example by id

@@ -2,7 +2,7 @@ var $submitBtn = $(".submitOffer");
 var $delteBtn = $(".deleteDeal");
 var $acceptBtn = $('.acceptDeal');
 var $completeBtn = $(".completeDeal");
-var $uploadImg = $('#uploadImage');
+// var $uploadImg = $('#uploadImage');
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -33,7 +33,18 @@ var API = {
       url: "api/delete/" + id,
       type: "DELETE"
     });
-  }
+  },
+
+  // uploadImage: function(username, image){
+  //   return $.ajax({
+  //     url: 'api/upload',
+  //     type: 'POST',
+  //     data: {
+  //       username: username,
+  //       file: image
+  //     }
+  //   })
+  // }
 };
 
 // empties input form
@@ -113,14 +124,18 @@ var completeOffer = function () {
 
 }
 
-// var handleUpload = function (event){
-//   event.preventDefault()
-//   console.log('uploading...');
+var handleUpload = function (event){
+  event.preventDefault()
+  console.log('uploading...');
+  var image = document.getElementById('image').files[0];
 
-//   API.uploadImage().then(() => {
-//     console.log('image uploaded!');
-//   })
-// }
+  const username = $('#username').val();
+
+  console.log(image);
+  API.uploadImage(username, image).then(() => {
+    console.log('image of ' + username + ' uploaded!');
+  })
+}
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
