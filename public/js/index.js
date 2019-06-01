@@ -65,7 +65,7 @@ var handleFormSubmit = function (event) {
   console.log('submitted')
   //TODO replace userID with the users' ID
   var newObj = {
-    UserId: 1,
+    UserId: 2,
     offered: $('#offered').val(),
     offeredQTY: $('#offeredQTY').val(),
     offeredUnits: $('#offeredUnits').val(),
