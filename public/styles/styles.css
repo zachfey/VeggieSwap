@@ -59,6 +59,7 @@ body,h1,h2,div,form,label,h3,a,h4,th {
   display: inline-block;
   width: 45%;
 }
+
 .offerrer {
   margin-top: 5px;
 }
@@ -280,10 +281,10 @@ background-color: red; */
   padding: -5px;
 }
 
-.offers {
+/* .offers {
   display: inline-block;
   width: 30%;
-}
+} */
 .offerrer {
   margin-top: 5px;
 }
@@ -466,4 +467,32 @@ tr:nth-child(odd) {
 #closedTransactions {
   width:80%;
   margin:auto;
+}
+
+.pendingOfferNo1, .pendingOfferNo2, .pendingOfferNo3, .pendingOfferNo4, .pendingOfferNo5, .pendingOfferNo6, .pendingOfferNo7, .pendingOfferNo8, .pendingOfferNo9, .pendingOfferNo10 {
+  border: 2px solid black;
+  background-color: rgb(243, 216, 199);
+  width:45%;
+  padding: 10px;
+  padding-left:20px;
+  margin: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.pendingOfferNo1:hover, .pendingOfferNo2:hover, .pendingOfferNo3:hover, .pendingOfferNo4:hover, .pendingOfferNo5:hover, .pendingOfferNo6:hover, .pendingOfferNo7:hover, .pendingOfferNo8:hover, .pendingOfferNo9:hover, .pendingOfferNo10:hover{
+  cursor: pointer;
+  background-color: rgb(214, 164, 127);
+  color:white;
+  margin: 7px;
+  border:4px solid rgb(223, 109, 43);
+}
+
+.pendingOffers {
+  display: inline-block;
+  width: 45%;
+}
+
+.hiddenPending1, .hiddenPending2, .hiddenPending3, .hiddenPending4, .hiddenPending5, .hiddenPending6, .hiddenPending7, .hiddenPending8, .hiddenPending9, .hiddenPending10 {
+  display:none;
 }
