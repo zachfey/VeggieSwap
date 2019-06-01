@@ -29,45 +29,45 @@ module.exports = function (app) {
 
   //upload user image
   //TODO save file path in database for user image url
-  app.post('/api/upload',
-    db.upload.single("file" /* name attribute of <file> element in form */),
-    (req, res) => {
-      let tempPath = req.file.path;
-      const username = 'zachary' //TODO replace this with the user
-      let targetPath = path.join(__dirname, "../public/images/" + username + '.png');
+  // app.post('/api/upload',
+  //   db.upload.single("file" /* name attribute of <file> element in form */),
+  //   (req, res) => {
+  //     let tempPath = req.file.path;
+  //     const username = 'zachary' //TODO replace this with the user
+  //     let targetPath = path.join(__dirname, "../public/images/" + username + '.png');
   
-      if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpg") {
-        fs.rename(tempPath, targetPath, err => {
-          if (err) {console.log(err)};
+  //     if (path.extname(req.file.originalname).toLowerCase() === ".png" || path.extname(req.file.originalname).toLowerCase() === ".jpg") {
+  //       fs.rename(tempPath, targetPath, err => {
+  //         if (err) {console.log(err)};
   
-          res
-            .status(200)
-            .contentType("text/plain")
-            .end("File uploaded!");
-        });
-      } else {
-        fs.unlink(tempPath, err => {
-          if (err) return handleError(err, res);
+  //         res
+  //           .status(200)
+  //           .contentType("text/plain")
+  //           .end("File uploaded!");
+  //       });
+  //     } else {
+  //       fs.unlink(tempPath, err => {
+  //         if (err) return handleError(err, res);
   
-          res
-            .status(403)
-            .contentType("text/plain")
-            .end("Only .png or .jpg files are allowed!");
-        });
-      }
-    }
-  );
+  //         res
+  //           .status(403)
+  //           .contentType("text/plain")
+  //           .end("Only .png or .jpg files are allowed!");
+  //       });
+  //     }
+  //   }
+  // );
 
-  //serve image
-  app.get("/api/:image", (req, res) => {
-    fs.stat(path.join(__dirname, "../public/images/" + req.params.image), function(err, stat) { 
-      if (err == null) { 
-        res.sendFile(path.join(__dirname, "../public/images/" + req.params.image));
-      } else  {
-        res.sendFile(path.join(__dirname, "../public/images/default.png"));
-      }
-    }); 
-  });
+  // //serve image
+  // app.get("/api/:image", (req, res) => {
+  //   fs.stat(path.join(__dirname, "../public/images/" + req.params.image), function(err, stat) { 
+  //     if (err == null) { 
+  //       res.sendFile(path.join(__dirname, "../public/images/" + req.params.image));
+  //     } else  {
+  //       res.sendFile(path.join(__dirname, "../public/images/default.png"));
+  //     }
+  //   }); 
+  // });
 
   // Delete an example by id
   app.delete("/api/delete/:id", function (req, res) {

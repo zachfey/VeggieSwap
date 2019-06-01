@@ -11,9 +11,6 @@
 <link rel="stylesheet" type="text/css"  href="../public/styles/styles.css">
 <link rel="stylesheet" type="text/css"  href="../public/styles/style.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
 <style>
     html,
     body,
@@ -23,16 +20,13 @@
     h4 {
         font-family: "Lato", sans-serif
     }
-
     .mySlides {
         display: none
     }
-
     .w3-tag,
     .fa {
         cursor: pointer
     }
-
     .w3-tag {
         height: 15px;
         width: 15px;
@@ -40,11 +34,8 @@
         margin-top: 6px
     }
 </style>
-
 <body>
-
     <!-- Links (sit on top) -->
-
     <div class="w3-top">
         <div class="w3-row w3-large w3-black">
             <div class="w3-col s3">
@@ -61,13 +52,10 @@
             </div>
         </div>
     </div>
-
-
     <!-- Content -->
     <div class="background">
          <div class="logo-container"></div>
     <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px;height:80%">
-
         <div class="w3-panel">
             
             <p></p>
@@ -77,7 +65,6 @@
         <br>
         <br>
         <br>
-
         <!-- Slideshow -->
         <div class="w3-container">
             <div class="w3-display-container mySlides">
@@ -98,14 +85,12 @@
                     <span class="w3-white w3-padding-large w3-animate-bottom">GROW A COMMUNITY</span>
                 </div>
             </div>
-
             <!-- Slideshow next/previous buttons -->
             <div class="w3-container w3-dark-grey w3-padding w3-xlarge">
                 <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i>
                 </div>
                 <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i>
                 </div>
-
                 <div class="w3-center">
                     <span class="w3-tag demodots w3-border w3-transparent w3-hover-white"
                         onclick="currentDiv(1)"></span>
@@ -116,8 +101,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- Grid -->
         <div class="w3-row-padding" id="offers">
             
@@ -132,7 +115,6 @@
                     <script>
                         var offerCounter=0;
                     </script>
-
                         {{#each openDeals}}
                                 <script>
                                     if (offerCounter <10) {
@@ -156,7 +138,8 @@
                                         hiddenPerOffer.addClass("hidden" + offerCounter.toString());
                                         hiddenPerOffer.addClass("toggle" + offerCounter.toString());
                                         hiddenPerOffer.html(`
-                                            <div> {{this.belongsTo}} </div>
+                                            <div>  Username:  {{this.User.username}} </div>
+                                            <div>  Email:  {{this.User.email}} </div>
                                             <button class = "deleteDeal" data-dealid = {{this.id}}>Delete</button>
                                             <button class = "acceptDeal" data-dealid = {{this.id}}>Accept</button>
                                             <button class = "completeDeal" data-dealid = {{this.id}}>Complete</button>`);
@@ -169,7 +152,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Grid -->
         <div class="w3-row-padding" id="transactions">
             <div class="w3-center w3-padding-64">
@@ -180,14 +162,13 @@
             <h5>View Recent Swaps:</h5>
             </p>
             </div>
-
             <div class="w3-center">
                 <div class="closedSection w3-center">
                     <table id="closedTransactions">
                         <th id="closedOffered">Offered</th>
                         <th id="closedAsked">Asked</th>
-                        <th id="offerer">Offerer</th>
-                        <th id="acceptor">Acceptor</th>
+                        <th id="offerer">Deal Initiator</th>
+                        
                         <th id="closedTime">Closing Time</th>
                     </table>
                     {{#each closedDeals}}
@@ -196,27 +177,24 @@
                             var td1= $("<td>");
                             var td2= $("<td>");
                             var td3= $("<td>");
-                            var td4= $("<td>");
+                            
                             var td5= $("<td>");
                             td1.html("{{this.offered}}");
                             td2.html("{{this.asked}}");
-                            td3.html("(offerer)");
-                            td4.html("(acceptor)");
+                            td3.html("{{this.User.username}}");
+                            
                             td5.html("{{this.updatedAt}}");
-
                             newRow.append(td1);
                             newRow.append(td2);
                             newRow.append(td3);
-                            newRow.append(td4);
+                            
                             newRow.append(td5);
-
                             $("#closedTransactions").append(newRow);
                         </script>
                     {{/each}}
                 </div>
             </div>    
         </div>
-
         <!-- Contact -->
         <div class="w3-center w3-padding-64" id="contact">
             <p id="borderimage">
@@ -243,7 +221,7 @@
             </div>
             <div class="and">AND</div>
             <div id="makeWant">
-                <label>Asking</label>
+                <label>Asking: </label>
                 <input class="offerInput" style="width:30%;" type="text" name="wanting" id ='asked' required>
             
             
@@ -262,27 +240,20 @@
         
     </div>
     </div>
-
     <!-- Footer -->
-
     <footer class="w3-container w3-light-grey w3-center">
         <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
     </footer>
-
-
     <script>
         // Slideshow
         var slideIndex = 1;
         showDivs(slideIndex);
-
         function plusDivs(n) {
             showDivs(slideIndex += n);
         }
-
         function currentDiv(n) {
             showDivs(slideIndex = n);
         }
-
         function showDivs(n) {
             var i;
             var x = document.getElementsByClassName("mySlides");
@@ -424,7 +395,5 @@
         }
     })   
 </script>
-
 </body>
-
 </html>
