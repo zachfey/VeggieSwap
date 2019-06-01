@@ -7,7 +7,7 @@ var basename = path.basename(module.filename);
 var env = process.env.NODE_ENV || "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
-var multer = require('multer');
+// var multer = require('multer');
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -40,8 +40,8 @@ Object.keys(db).forEach(function(modelName) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.upload = multer({
-  dest: "../public/images/userImages"
-});
+// db.upload = multer({
+//   dest: "../public/images/userImages"
+// });
 
 module.exports = db;
